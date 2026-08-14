@@ -33,6 +33,7 @@ const env = {
 }
 
 let result
+let cleanupError
 try {
   writeFileSync(tsconfigPath, '{"extends":"../tsconfig.json"}\n', 'utf8')
   result = spawnSync('npm', ['run', 'build'], {
@@ -48,10 +49,12 @@ try {
     path.dirname(outputDir) !== qualityDir ||
     path.dirname(tsconfigPath) !== qualityDir
   ) {
-    throw new Error('Refusing to clean unexpected quality build paths')
+    cleanupError = new Error('Refusing to clean unexpected quality build paths')
+  } else {
+    rmSync(qualityDir, { recursive: true, force: true })
   }
-  rmSync(qualityDir, { recursive: true, force: true })
 }
 
+if (cleanupError) throw cleanupError
 if (result.error) throw result.error
 process.exit(result.status ?? 1)
