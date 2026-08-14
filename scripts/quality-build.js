@@ -16,7 +16,7 @@ const applicableDotenvFiles = [
   '.env.production',
   '.env.production.local',
 ]
-const presentDotenvFiles = applicableDotenvFiles.filter((name) =>
+const presentDotenvFiles = applicableDotenvFiles.filter(name =>
   existsSync(path.join(repoRoot, name))
 )
 if (presentDotenvFiles.length > 0) {
@@ -25,7 +25,9 @@ if (presentDotenvFiles.length > 0) {
   )
 }
 
-const qualityDir = mkdtempSync(path.join(repoRoot, `.quality-build-${process.pid}-`))
+const qualityDir = mkdtempSync(
+  path.join(repoRoot, `.quality-build-${process.pid}-`)
+)
 const qualityName = path.basename(qualityDir)
 const outputName = `${qualityName}/.next`
 const tsconfigName = `${qualityName}/tsconfig.json`

@@ -114,8 +114,7 @@ export async function GET(request: NextRequest) {
       const eventParam = url.searchParams.get('event')
       // Cast to EventType - invalid values will just return no results
       const event = eventParam as
-        | import('@/lib/observability').EventType
-        | undefined
+        import('@/lib/observability').EventType | undefined
       const requestId = url.searchParams.get('requestId') || undefined
 
       response.logs = observability.getLogs({
