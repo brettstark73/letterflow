@@ -124,6 +124,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -202,7 +203,9 @@
     "npm": "10.2.4"
   },
   "overrides": {
-    "tmp": "^0.2.4"
+    "lighthouse": "13.4.1",
+    "tmp": "0.2.7",
+    "uuid": "11.1.1"
   },
   "size-limit": [
     {

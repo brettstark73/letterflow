@@ -191,7 +191,6 @@ describe('/api/webhooks/stripe', () => {
   describe('checkout.session.completed', () => {
     it('should handle successful checkout completion', async () => {
       const event = createCheckoutEvent({
-        userId: 'user-123',
         customerId: 'cus_checkout_123',
         metadata: { tier: 'standard' },
       })
@@ -426,7 +425,6 @@ describe('/api/webhooks/stripe', () => {
     it('should handle failed payment', async () => {
       const event = createPaymentFailedEvent({
         customerId: 'cus_failed_123',
-        attemptCount: 2,
       })
 
       mockStripe.webhooks.constructEvent.mockReturnValue(event)
@@ -452,7 +450,6 @@ describe('/api/webhooks/stripe', () => {
     it('should mark subscription as past_due after multiple failures', async () => {
       const event = createPaymentFailedEvent({
         customerId: 'cus_multifail_123',
-        attemptCount: 3,
       })
 
       mockStripe.webhooks.constructEvent.mockReturnValue(event)
