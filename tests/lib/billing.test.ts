@@ -69,9 +69,15 @@ const mockStripe = vi.hoisted(() => ({
   },
 }))
 
+const stripeConstructor = vi.hoisted(() => vi.fn())
+
 vi.mock('stripe', () => {
   return {
     default: class MockStripe {
+      constructor(secretKey: string, options: unknown) {
+        stripeConstructor(secretKey, options)
+      }
+
       checkout = mockStripe.checkout
       subscriptions = mockStripe.subscriptions
       customers = mockStripe.customers
@@ -228,6 +234,10 @@ describe('BillingService', () => {
           cancelUrl: 'https://example.com/cancel',
         }
       )
+
+      expect(stripeConstructor).toHaveBeenCalledWith('sk_test_xxx', {
+        apiVersion: '2026-02-25.clover',
+      })
 
       expect(result).toHaveProperty('url')
       expect(mockStripe.checkout.sessions.create).toHaveBeenCalledWith(
