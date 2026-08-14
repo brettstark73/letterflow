@@ -117,8 +117,7 @@ import { createServiceClient } from '@/lib/supabase/service'
 import { createClient } from '@/lib/supabase/server'
 
 type AnySupabaseClient =
-  | SupabaseClient
-  | Awaited<ReturnType<typeof createServiceClient>>
+  SupabaseClient | Awaited<ReturnType<typeof createServiceClient>>
 
 // AFTER
 import { createClient } from '@/lib/supabase/server'

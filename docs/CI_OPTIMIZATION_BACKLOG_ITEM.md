@@ -58,8 +58,8 @@ on:
 # AFTER:
 on:
   schedule:
-    - cron: '0 2 * * 0'  # Sunday 2am UTC (weekly comprehensive scan)
-  workflow_dispatch:      # Allow manual trigger when needed
+    - cron: '0 2 * * 0' # Sunday 2am UTC (weekly comprehensive scan)
+  workflow_dispatch: # Allow manual trigger when needed
 ```
 
 **File: `.github/workflows/quality-python.yml`** (if exists)

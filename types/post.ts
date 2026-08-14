@@ -15,11 +15,7 @@ export type PostType = 'pre_cta' | 'post_cta'
  * Post status lifecycle
  */
 export type PostStatus =
-  | 'draft'
-  | 'scheduled'
-  | 'publishing'
-  | 'published'
-  | 'failed'
+  'draft' | 'scheduled' | 'publishing' | 'published' | 'failed'
 
 /**
  * Social post database record

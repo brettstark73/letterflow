@@ -446,7 +446,6 @@ describe('/api/webhooks/stripe', () => {
         subscription_status: 'past_due',
       })
     })
-
   })
 
   describe('Unhandled Events', () => {
