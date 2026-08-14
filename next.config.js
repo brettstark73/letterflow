@@ -2,6 +2,10 @@ const { withSentryConfig } = require('@sentry/nextjs')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: process.env.NEXT_DIST_DIR || '.next',
+  typescript: {
+    tsconfigPath: process.env.NEXT_TSCONFIG_PATH || 'tsconfig.json',
+  },
   output: 'standalone',
   reactStrictMode: true,
   poweredByHeader: false,

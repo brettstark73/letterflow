@@ -12,7 +12,7 @@
   },
   "homepage": "https://github.com/buildproven/postrail#readme",
   "engines": {
-    "node": ">=20",
+    "node": "^22.19.0 || >=24.0.0",
     "npm": ">=10.0.0"
   },
   "scripts": {
@@ -87,7 +87,7 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@sentry/nextjs": "^10.38.0",
     "@supabase/ssr": "^0.8.0",
-    "@supabase/supabase-js": "^2.93.3",
+    "@supabase/supabase-js": "2.109.0",
     "@tiptap/extension-placeholder": "^3.18.0",
     "@tiptap/react": "^3.18.0",
     "@tiptap/starter-kit": "^3.18.0",
@@ -124,6 +124,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -198,11 +199,13 @@
     ]
   },
   "volta": {
-    "node": "20.11.1",
+    "node": "22.19.0",
     "npm": "10.2.4"
   },
   "overrides": {
-    "tmp": "^0.2.4"
+    "lighthouse": "13.4.1",
+    "tmp": "0.2.7",
+    "uuid": "11.1.1"
   },
   "size-limit": [
     {

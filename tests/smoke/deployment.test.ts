@@ -196,7 +196,7 @@ describe('Pre-Deployment Smoke Tests', () => {
       const pkg = JSON.parse(fs.readFileSync('package.json', 'utf-8'))
 
       expect(pkg.engines).toBeDefined()
-      expect(pkg.engines.node).toContain('20')
+      expect(pkg.engines.node).toContain('22.19')
     })
 
     it('should not have known vulnerable packages', () => {

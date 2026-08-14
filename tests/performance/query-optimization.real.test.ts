@@ -21,6 +21,8 @@ vi.mock('next/headers', () => ({
 import { createClient } from '@/lib/supabase/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { RequestCookies } from 'next/dist/server/web/spec-extension/cookies'
+import { RequestCookiesAdapter } from 'next/dist/server/web/spec-extension/adapters/request-cookies'
 
 const mockCreateServerClient = vi.mocked(createServerClient)
 const mockCookies = vi.mocked(cookies)
@@ -33,10 +35,9 @@ import {
 } from '@/lib/performance-benchmark'
 
 // Setup mock Supabase client and cookies at module level (applies to all tests)
-const mockCookieStore = {
-  getAll: vi.fn().mockReturnValue([]),
-  set: vi.fn(),
-}
+const mockCookieStore = RequestCookiesAdapter.seal(
+  new RequestCookies(new Headers())
+)
 mockCookies.mockResolvedValue(mockCookieStore)
 
 const mockClient: any = {
