@@ -70,7 +70,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: '22.19.0'
 
       - name: Detect Package Manager
         id: detect-pm
@@ -172,7 +172,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: '22.19.0'
           cache: 'npm'
 
       - name: Setup pnpm
@@ -245,7 +245,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: '22.19.0'
           cache: 'npm'
 
       - name: Setup pnpm
@@ -317,7 +317,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [22]
+        node-version: [22.19.0]
 
     steps:
       - name: Checkout code
@@ -423,7 +423,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: '22.19.0'
           cache: 'npm'
 
       - name: Setup pnpm
