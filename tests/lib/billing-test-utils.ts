@@ -80,11 +80,13 @@ export function createStripeMock(): StripeMock {
 // ============================================================================
 
 export interface EventFactoryOptions {
+  userId?: string
   customerId?: string
   subscriptionId?: string
   priceId?: string
   status?: Stripe.Subscription.Status
   metadata?: Record<string, string>
+  attemptCount?: number
 }
 
 // ============================================================================
@@ -95,6 +97,7 @@ export function createCheckoutEvent(
   options: EventFactoryOptions = {}
 ): Stripe.Event {
   const {
+    userId,
     customerId = 'cus_test_123',
     subscriptionId = 'sub_test_123',
     metadata = {},
@@ -109,7 +112,7 @@ export function createCheckoutEvent(
         object: 'checkout.session',
         customer: customerId,
         subscription: subscriptionId,
-        metadata,
+        metadata: userId ? { ...metadata, userId } : metadata,
         mode: 'subscription',
         payment_status: 'paid',
         status: 'complete',
@@ -217,8 +220,11 @@ export function createPaymentSucceededEvent(
 export function createPaymentFailedEvent(
   options: EventFactoryOptions = {}
 ): Stripe.Event {
-  const { customerId = 'cus_test_123', subscriptionId = 'sub_test_123' } =
-    options
+  const {
+    customerId = 'cus_test_123',
+    subscriptionId = 'sub_test_123',
+    attemptCount,
+  } = options
 
   return {
     id: 'evt_test_payment_failed',
@@ -231,6 +237,7 @@ export function createPaymentFailedEvent(
         subscription: subscriptionId,
         status: 'open',
         amount_due: 2900,
+        ...(attemptCount === undefined ? {} : { attempt_count: attemptCount }),
       } as unknown as Stripe.Invoice,
     },
     object: 'event',
