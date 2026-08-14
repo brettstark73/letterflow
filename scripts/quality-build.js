@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { mkdtempSync, rmSync, writeFileSync } = require('node:fs')
+const { existsSync, mkdtempSync, rmSync, writeFileSync } = require('node:fs')
 const path = require('node:path')
 const { spawnSync } = require('node:child_process')
 const { randomBytes } = require('node:crypto')
@@ -10,6 +10,21 @@ if (process.argv.length !== 3 || process.argv[2] !== '--synthetic-env') {
 }
 
 const repoRoot = path.resolve(__dirname, '..')
+const applicableDotenvFiles = [
+  '.env',
+  '.env.local',
+  '.env.production',
+  '.env.production.local',
+]
+const presentDotenvFiles = applicableDotenvFiles.filter((name) =>
+  existsSync(path.join(repoRoot, name))
+)
+if (presentDotenvFiles.length > 0) {
+  throw new Error(
+    `Quality build refuses repository dotenv files: ${presentDotenvFiles.join(', ')}`
+  )
+}
+
 const qualityDir = mkdtempSync(path.join(repoRoot, `.quality-build-${process.pid}-`))
 const qualityName = path.basename(qualityDir)
 const outputName = `${qualityName}/.next`
