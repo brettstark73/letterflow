@@ -18,6 +18,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:ci": "NEXT_PUBLIC_SUPABASE_URL=https://test.supabase.co NEXT_PUBLIC_SUPABASE_ANON_KEY=test-anon-key ANTHROPIC_API_KEY=test-api-key ENCRYPTION_KEY=0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef next build",
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
