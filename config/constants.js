@@ -11,7 +11,7 @@
  */
 const NODE_VERSION = {
   /** Minimum supported Node.js major version */
-  MIN_MAJOR: 20,
+  MIN_MAJOR: 22,
 }
 
 /**

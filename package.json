@@ -12,7 +12,7 @@
   },
   "homepage": "https://github.com/buildproven/postrail#readme",
   "engines": {
-    "node": ">=20",
+    "node": ">=22.19.0",
     "npm": ">=10.0.0"
   },
   "scripts": {
@@ -199,7 +199,7 @@
     ]
   },
   "volta": {
-    "node": "20.11.1",
+    "node": "22.19.0",
     "npm": "10.2.4"
   },
   "overrides": {

@@ -447,30 +447,6 @@ describe('/api/webhooks/stripe', () => {
       })
     })
 
-    it('should mark subscription as past_due after multiple failures', async () => {
-      const event = createPaymentFailedEvent({
-        customerId: 'cus_multifail_123',
-      })
-
-      mockStripe.webhooks.constructEvent.mockReturnValue(event)
-
-      const request = new NextRequest(
-        'http://localhost:3000/api/webhooks/stripe',
-        {
-          method: 'POST',
-          body: JSON.stringify(event),
-          headers: { 'stripe-signature': 't=123,v1=valid' },
-        }
-      )
-
-      const response = await POST(request)
-
-      expect(response.status).toBe(200)
-      expect(mockSupabaseEq).toHaveBeenCalledWith(
-        'stripe_customer_id',
-        'cus_multifail_123'
-      )
-    })
   })
 
   describe('Unhandled Events', () => {

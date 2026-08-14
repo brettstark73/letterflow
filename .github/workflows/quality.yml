@@ -63,7 +63,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '22.19.0'
 
       - name: Detect Package Manager
         id: detect-pm
@@ -145,7 +145,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '22.19.0'
           cache: ${{ needs.detect-maturity.outputs.package-manager }}
 
       - name: Setup pnpm
@@ -337,7 +337,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '22.19.0'
           cache: ${{ needs.detect-maturity.outputs.package-manager }}
 
       - name: Setup pnpm
