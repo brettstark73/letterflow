@@ -18,6 +18,7 @@ const ALGORITHM = 'aes-256-gcm'
 const IV_LENGTH = 16
 const SALT_LENGTH = 64
 const KEY_LENGTH = 32
+const AUTH_TAG_LENGTH = 16
 // OWASP ASVS 4.0.3: PBKDF2-HMAC-SHA256 with 600,000+ iterations recommended
 // See: https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 const PBKDF2_ITERATIONS_PRODUCTION = 600000
@@ -112,7 +113,9 @@ export function encrypt(text: string): string {
   )
 
   // Create cipher and encrypt
-  const cipher = crypto.createCipheriv(ALGORITHM, derivedKey, iv)
+  const cipher = crypto.createCipheriv(ALGORITHM, derivedKey, iv, {
+    authTagLength: AUTH_TAG_LENGTH,
+  })
 
   let encrypted = cipher.update(text, 'utf8', 'hex')
   encrypted += cipher.final('hex')
@@ -185,7 +188,9 @@ export function decrypt(encryptedData: string): string {
   }
 
   // Create decipher
-  const decipher = crypto.createDecipheriv(ALGORITHM, derivedKey, iv)
+  const decipher = crypto.createDecipheriv(ALGORITHM, derivedKey, iv, {
+    authTagLength: AUTH_TAG_LENGTH,
+  })
   decipher.setAuthTag(authTag)
 
   // Decrypt

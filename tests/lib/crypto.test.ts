@@ -88,6 +88,13 @@ describe('Crypto Utilities - Encryption', () => {
     expect(() => decrypt(tampered)).toThrow()
   })
 
+  it('should reject a truncated authentication tag', () => {
+    const parts = encrypt('test').split(':')
+    parts[3] = parts[3].slice(0, -2)
+
+    expect(() => decrypt(parts.join(':'))).toThrow()
+  })
+
   it('should fail to decrypt with invalid format', () => {
     expect(() => decrypt('invalid-data')).toThrow()
     expect(() => decrypt('too:few:parts')).toThrow()
