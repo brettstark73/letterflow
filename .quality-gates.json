@@ -3,7 +3,7 @@
   "gates": {
     "build": {
       "executable": "node",
-      "args": ["scripts/quality-build.js"]
+      "args": ["scripts/quality-build.js", "--synthetic-env"]
     }
   }
 }
