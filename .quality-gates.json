@@ -2,8 +2,8 @@
   "version": 1,
   "gates": {
     "build": {
-      "executable": "npm",
-      "args": ["run", "build:ci"]
+      "executable": "node",
+      "args": ["scripts/quality-build.js"]
     }
   }
 }
